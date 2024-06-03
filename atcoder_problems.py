@@ -6,9 +6,9 @@ from selenium.webdriver.support import expected_conditions as EC
 from bs4 import BeautifulSoup
 from models import question, problem_set
 
-def atcoder_propagate(problem_sets):
+def atcoder_propagate(problem_sets, username):
     #Accesing the URL
-    url = "https://kenkoooo.com/atcoder/#/table/Reverberate"
+    url = f"https://kenkoooo.com/atcoder/#/table/{username}"
 
 
     driver = webdriver.Chrome()

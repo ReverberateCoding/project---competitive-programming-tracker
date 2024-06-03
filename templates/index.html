@@ -17,6 +17,7 @@
             <th>Question 5</th>
             <th>Question 6</th>
             <th>Question 7</th>
+            <th>Question 8</th>
         </tr>
         {% for problem_set in problem_sets %}
             <tr>
@@ -28,9 +29,9 @@
                         <p>{{question.question_solved}}</p>
                         <a href="{{question.question_link}}">{{question.question_id}}</a>
                         <ul>
-                            {% for tag in question.question_tags %}
-                                <li>{{tag}}</li>
-                            {% endfor %}
+                        {% for tag in question.question_tags %}
+                            <li>{{tag}}</li>
+                        {% endfor %}
                         </ul>
                     </td>
                 {% endfor %}
