@@ -1,0 +1,6 @@
+table, th, td {
+    border:1px solid black;
+}
+.table-cell-question-solved {
+    background-color: #89f0b2;
+}

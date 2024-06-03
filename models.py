@@ -15,7 +15,7 @@ class question:
         return f"{self.question_name}{self.question_link}{self.question_difficulty}{self.question_judge}{self.question_solved}{self.question_id}{self.question_tags}"
     def __str__(self):
         return f"{self.question_name}{self.question_link}{self.question_difficulty}{self.question_judge}{self.question_solved}{self.question_id}{self.question_tags}"
-    def display_tags(self):
+    def displayTags(self):
         print(str(self.question_tags))
 class problem_set:
     def __init__(self, contest_element, question_elements, judge):
@@ -84,7 +84,7 @@ class problem_set:
         ret = "\n".join(map(str, self.question_list))
         ret = f"Contest Information: {self.problem_set_name}{self.problem_set_link}{self.problem_set_judge}\n" + ret + "\n"
         return ret
-    def strlist(self):
+    def returnStringList(self):
         ret = list()
         ret.append(f"Contest Information: {self.problem_set_name}{self.problem_set_link}{self.problem_set_judge}\n")
         for i in self.question_list:

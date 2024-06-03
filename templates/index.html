@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <link rel="stylesheet", href="static\style.css">
+</head>
+<body>
+    <table>
+        <tr>
+            <th>Problem Set Name</th>
+            <th>Question 1</th>
+            <th>Question 2</th>
+            <th>Question 3</th>
+            <th>Question 4</th>
+            <th>Question 5</th>
+            <th>Question 6</th>
+            <th>Question 7</th>
+        </tr>
+        {% for problem_set in problem_sets %}
+            <tr>
+                <td>
+                    <a href="{{problem_set.problem_set_link}}">{{problem_set.problem_set_name}}</a>
+                </td>
+                {% for question in problem_set.question_list %}
+                    <td class="{% if question.question_solved %}table-cell-question-solved{% endif %}">
+                        <p>{{question.question_solved}}</p>
+                        <a href="{{question.question_link}}">{{question.question_id}}</a>
+                        <ul>
+                            {% for tag in question.question_tags %}
+                                <li>{{tag}}</li>
+                            {% endfor %}
+                        </ul>
+                    </td>
+                {% endfor %}
+            </tr>
+        {% endfor %}
+    </table>
+</body>
+</html>
