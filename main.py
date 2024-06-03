@@ -13,7 +13,7 @@ with open("problemsets.txt", "w", encoding="utf-8") as file:
 app = Flask(__name__, template_folder="templates")
 
 @app.route("/")
-def index():
+def home():
     return "Please add / alongside your AtCoder username to the current link"
 
 @app.route("/<username>")
