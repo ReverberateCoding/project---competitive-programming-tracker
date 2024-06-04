@@ -2,7 +2,7 @@
 1. Description
 2. Usage
 ***
-#Description
+# Description
 Competitive programming tracker
-#Usage
+# Usage
 Simply type in your username
