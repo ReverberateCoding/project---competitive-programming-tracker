@@ -1,4 +1,4 @@
-let text1 = document.getElementById('text2');
+let text1 = document.getElementById('text1');
 let url = window.location.href;
 
 url = String(url)
