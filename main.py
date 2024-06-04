@@ -1,6 +1,14 @@
 from atcoder_problems import atcoder_propagate
 from models import question, problem_set
 from flask import Flask, render_template, redirect, request, url_for
+
+#Server imports
+from gevent.pywsgi import WSGIServer
+import os
+
+if os.name != "nt":
+    os.chdir(os.path.dirname(_file_))
+
 #problem_sets = list()
 #atcoder_propagate(problem_sets=problem_sets, username="shoryu386")
 
@@ -27,4 +35,6 @@ def index(username):
     return render_template("index.html", problem_sets=problem_sets)
 
 if __name__ == "__main__":
-    app.run(host="0.0.0.0", debug=True)
+    http_server = WSGIServer(("0.0.0.0", 2001), app)
+    http_server.serve_forever()
+    #app.run(host="0.0.0.0", debug=True)
