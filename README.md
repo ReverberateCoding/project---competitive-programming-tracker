@@ -5,4 +5,4 @@
 # Description
 Competitive programming tracker
 # Usage
-Simply type in your username
+Simply type in your username and click submit
