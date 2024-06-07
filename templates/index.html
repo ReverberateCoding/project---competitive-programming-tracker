@@ -8,6 +8,16 @@
 </head>
 <body>
     <p id="text1">test</p>
+    <form action="">
+        {% for atcoder_category, atcoder_subcategories in atcoder_categories.items() %}
+            <input type="checkbox" id="{{atcoder_category}}" name="{{atcoder_category}}" value="{{atcoder_category}}">
+            <label for="{{atcoder_category}}"> <strong>{{atcoder_category}}</strong></label><br>
+            {% for atcoder_subcategory, question_ids in atcoder_subcategories.items() %}
+                <input type="checkbox" id="{{atcoder_subcategory}}" name="{{atcoder_subcategory}}" value="{{atcoder_subcategory}}">
+                <label for="{{atcoder_subcategory}}"> {{atcoder_subcategory}}</label><br>
+            {% endfor %}
+        {% endfor %}
+    </form>
     <table>
         <tr>
             <th>Problem Set Name</th>

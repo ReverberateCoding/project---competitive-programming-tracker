@@ -1,6 +1,7 @@
 from atcoder_problems import atcoder_propagate
 from models import question, problem_set
 from flask import Flask, render_template, redirect, request, url_for
+import json
 
 #Server imports
 from gevent.pywsgi import WSGIServer
@@ -20,6 +21,11 @@ with open("problemsets.txt", "w", encoding="utf-8") as file:
 
 app = Flask(__name__, template_folder="templates")
 
+atcoder_categories = None
+
+with open("atcoder_tags.json") as file:
+    atcoder_categories = json.load(file)
+
 @app.route("/", methods=['POST', 'GET'])
 def login():
     if request.method == 'GET':
@@ -32,9 +38,9 @@ def login():
 def index(username):
     problem_sets = list()
     atcoder_propagate(problem_sets=problem_sets, username=username)
-    return render_template("index.html", problem_sets=problem_sets)
+    return render_template("index.html", problem_sets=problem_sets, atcoder_categories=atcoder_categories)
 
 if __name__ == "__main__":
-    http_server = WSGIServer(("0.0.0.0", 2001), app)
-    http_server.serve_forever()
-    #app.run(host="0.0.0.0", debug=True)
+    #http_server = WSGIServer(("0.0.0.0", 2001), app)
+    #http_server.serve_forever()
+    app.run(host="0.0.0.0", debug=True)
