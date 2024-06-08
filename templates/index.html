@@ -11,19 +11,22 @@
         </button>
         <div class="collapse mt-3" id="collapseExample">
             <div class="card card-body">
-                <form action="">
+                <form action="{{ url_for('index', username=username) }}">
+                     <!--Categories-->
                     {% for atcoder_category, atcoder_subcategories in atcoder_categories.items() %}
-                        <input type="checkbox" id="{{atcoder_category}}" name="{{atcoder_category}}" value="{{atcoder_category}}">
+                        <input class="category-checkbox" type="checkbox" id="{{atcoder_category}}" name="{{atcoder_category}}" value="{{atcoder_category}}">
                         <label for="{{atcoder_category}}"> <strong>{{atcoder_category}}</strong></label><br>
+                         <!--Subcategories-->
                         {% for atcoder_subcategory, question_ids in atcoder_subcategories.items() %}
-                            <input type="checkbox" id="{{atcoder_subcategory}}" name="{{atcoder_subcategory}}" value="{{atcoder_subcategory}}">
-                            <label for="{{atcoder_subcategory}}"> {{atcoder_subcategory}}</label>
+                            <input class="subcategory-checkbox" type="checkbox" id="{{atcoder_category}}_{{atcoder_subcategory}}" name="{{atcoder_category}}_{{atcoder_subcategory}}" value="{{atcoder_category}}_{{atcoder_subcategory}}">
+                            <label for="{{atcoder_category}}_{{atcoder_subcategory}}"> {{atcoder_subcategory}}</label>
                             {% if loop.index % 10 == 0 %}
                                 <br>
                             {% endif %}
                         {% endfor %}
                         <br>
                     {% endfor %}
+                    <input type="submit" value="Send Request" />
                 </form>
             </div>
         </div>
@@ -45,19 +48,22 @@
             </tr>
         </thead>
         <tbody>
+            <!--Propagating row-->
             {% for problem_set in problem_sets %}
                 <tr>
+                    <!--First column-->
                     <td class="col-custom">
                         <a href="{{problem_set.problem_set_link}}">{{problem_set.problem_set_name}}</a>
                     </td class="col-custom">
+                    <!--Next few columns-->
                     {% for question in problem_set.question_list %}
-                        <td class="col-custom {% if question.question_solved %}table-cell-question-solved{% endif %}">
+                        <td id="{{question.question_id}}" class="not-selected-cell col-custom {% if question.question_solved %}table-cell-question-solved{% endif %}">
                             <p>{{question.question_name}}</p>
                             <a href="{{question.question_link}}">{{question.question_id}}</a>
                             <ul class="tags-list">
                                 {% for tag in question.question_tags %}
                                     <li>
-                                        <p>{{tag}}</p>
+                                        <p>{{tag.split('_')[1]}}</p>
                                     </li>
                                 {% endfor %}
                             </ul>

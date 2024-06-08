@@ -38,7 +38,7 @@ def login():
 def index(username):
     problem_sets = list()
     atcoder_propagate(problem_sets=problem_sets, username=username)
-    return render_template("index.html", problem_sets=problem_sets, atcoder_categories=atcoder_categories)
+    return render_template("index.html", problem_sets=problem_sets, atcoder_categories=atcoder_categories, username=username)
 
 if __name__ == "__main__":
     #http_server = WSGIServer(("0.0.0.0", 2001), app)

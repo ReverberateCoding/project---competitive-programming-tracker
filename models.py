@@ -74,7 +74,7 @@ class problem_set:
                     for atcoder_category, atcoder_subcategories in atcoder_categories.items():
                         for atcoder_subcategory, question_ids in atcoder_subcategories.items():
                             if question_id in question_ids:
-                                question_tags.append(atcoder_subcategory)
+                                question_tags.append(f"{atcoder_category}_{atcoder_subcategory}")
 
                 self.question_list.append(question(question_name=question_name, question_link=question_link, question_difficulty=question_difficulty, question_judge=question_judge, question_solved=question_solved, question_id=question_id, question_tags=question_tags))
     def __repr__(self):
