@@ -1,54 +1,71 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Document</title>
-    <link rel="stylesheet", href="static\style.css">
-</head>
-<body>
+{% extends "template.html" %}
+{% block content %}
+    <!--Username reminder-->
+    <h1>Competitive Programming Tracker by Raphael</h1>
     <p id="text1">test</p>
-    <form action="">
-        {% for atcoder_category, atcoder_subcategories in atcoder_categories.items() %}
-            <input type="checkbox" id="{{atcoder_category}}" name="{{atcoder_category}}" value="{{atcoder_category}}">
-            <label for="{{atcoder_category}}"> <strong>{{atcoder_category}}</strong></label><br>
-            {% for atcoder_subcategory, question_ids in atcoder_subcategories.items() %}
-                <input type="checkbox" id="{{atcoder_subcategory}}" name="{{atcoder_subcategory}}" value="{{atcoder_subcategory}}">
-                <label for="{{atcoder_subcategory}}"> {{atcoder_subcategory}}</label><br>
-            {% endfor %}
-        {% endfor %}
-    </form>
-    <table>
-        <tr>
-            <th>Problem Set Name</th>
-            <th>Question 1</th>
-            <th>Question 2</th>
-            <th>Question 3</th>
-            <th>Question 4</th>
-            <th>Question 5</th>
-            <th>Question 6</th>
-            <th>Question 7</th>
-            <th>Question 8</th>
-        </tr>
-        {% for problem_set in problem_sets %}
-            <tr>
-                <td>
-                    <a href="{{problem_set.problem_set_link}}">{{problem_set.problem_set_name}}</a>
-                </td>
-                {% for question in problem_set.question_list %}
-                    <td class="{% if question.question_solved %}table-cell-question-solved{% endif %}">
-                        <p>{{question.question_solved}}</p>
-                        <a href="{{question.question_link}}">{{question.question_id}}</a>
-                        <ul>
-                        {% for tag in question.question_tags %}
-                            <li>{{tag}}</li>
+
+    <!--Collapsible tags-->
+    <div class="container mt-5">
+        <button class="btn btn-primary" type="button" data-bs-toggle="collapse" data-bs-target="#collapseExample" aria-expanded="false" aria-controls="collapseExample">
+            Tags
+        </button>
+        <div class="collapse mt-3" id="collapseExample">
+            <div class="card card-body">
+                <form action="">
+                    {% for atcoder_category, atcoder_subcategories in atcoder_categories.items() %}
+                        <input type="checkbox" id="{{atcoder_category}}" name="{{atcoder_category}}" value="{{atcoder_category}}">
+                        <label for="{{atcoder_category}}"> <strong>{{atcoder_category}}</strong></label><br>
+                        {% for atcoder_subcategory, question_ids in atcoder_subcategories.items() %}
+                            <input type="checkbox" id="{{atcoder_subcategory}}" name="{{atcoder_subcategory}}" value="{{atcoder_subcategory}}">
+                            <label for="{{atcoder_subcategory}}"> {{atcoder_subcategory}}</label>
+                            {% if loop.index % 10 == 0 %}
+                                <br>
+                            {% endif %}
                         {% endfor %}
-                        </ul>
-                    </td>
-                {% endfor %}
+                        <br>
+                    {% endfor %}
+                </form>
+            </div>
+        </div>
+    </div>
+
+    <!--Table-->
+    <table class="table table-bordered table-striped">
+        <thead class="thead-light">
+            <tr>
+                <th scope="col" class="col-custom">Problem Set Name</th>
+                <th scope="col" class="col-custom">Question 1</th>
+                <th scope="col" class="col-custom">Question 2</th>
+                <th scope="col" class="col-custom">Question 3</th>
+                <th scope="col" class="col-custom">Question 4</th>
+                <th scope="col" class="col-custom">Question 5</th>
+                <th scope="col" class="col-custom">Question 6</th>
+                <th scope="col" class="col-custom">Question 7</th>
+                <th scope="col" class="col-custom">Question 8</th>
             </tr>
-        {% endfor %}
+        </thead>
+        <tbody>
+            {% for problem_set in problem_sets %}
+                <tr>
+                    <td class="col-custom">
+                        <a href="{{problem_set.problem_set_link}}">{{problem_set.problem_set_name}}</a>
+                    </td class="col-custom">
+                    {% for question in problem_set.question_list %}
+                        <td class="col-custom {% if question.question_solved %}table-cell-question-solved{% endif %}">
+                            <p>{{question.question_name}}</p>
+                            <a href="{{question.question_link}}">{{question.question_id}}</a>
+                            <ul class="tags-list">
+                                {% for tag in question.question_tags %}
+                                    <li>
+                                        <p>{{tag}}</p>
+                                    </li>
+                                {% endfor %}
+                            </ul>
+                        </td>
+                    {% endfor %}
+                </tr>
+            {% endfor %}
+        </tbody>
     </table>
-    <script src="static\index_script.js"></script>
-</body>
-</html>
+    <script src="static/index_script.js"></script>
+{% endblock %}

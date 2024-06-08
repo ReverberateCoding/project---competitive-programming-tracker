@@ -1,6 +1,28 @@
-table, th, td {
-    border:1px solid black;
-}
+
 .table-cell-question-solved {
-    background-color: #89f0b2;
+    background-color: #89f0b2 !important;
+}
+
+.col-custom {
+    width: 11.11%;
+}
+
+.table {
+    table-layout: fixed; /* Ensures equal column widths */
+}
+
+.table th, .table td {
+    white-space: nowrap; /* Prevent text wrapping */
+    overflow: hidden; /* Hide overflow text */
+    text-overflow: ellipsis; /* Add ellipsis to overflow text */
+    text-align: center; /* Center text for better visual alignment */
+}
+
+.tags-list {
+    overflow: hidden; /* Hide overflow */
+    white-space: nowrap; /* Prevent text wrapping */
+    text-overflow: ellipsis; /* Add ellipsis to overflow text */
+    list-style-type: none; /* Remove bullet points */
+    padding: 0; /* Remove padding */
+    margin: 0; /* Remove margin */
 }
