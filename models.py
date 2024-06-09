@@ -69,7 +69,7 @@ class problem_set:
                 
                 question_id = question_link.split("/")[-1]
 
-                with open("atcoder_tags.json") as file:
+                with open("static/atcoder_tags.json") as file:
                     atcoder_categories = json.load(file)
                     for atcoder_category, atcoder_subcategories in atcoder_categories.items():
                         for atcoder_subcategory, question_ids in atcoder_subcategories.items():

@@ -93,5 +93,5 @@ for link in links:
         atcoder_problem_categories[category][sub_category].append(str(element.text))
 #print(atcoder_problem_categories)
 
-with open("atcoder_tags.json", "w") as file:
+with open("static/atcoder_tags.json", "w") as file:
     json.dump(atcoder_problem_categories, file)

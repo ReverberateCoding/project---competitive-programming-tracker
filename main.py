@@ -23,7 +23,7 @@ app = Flask(__name__, template_folder="templates")
 
 atcoder_categories = None
 
-with open("atcoder_tags.json") as file:
+with open(os.path.join("static", "atcoder_tags.json")) as file:
     atcoder_categories = json.load(file)
 
 @app.route("/", methods=['POST', 'GET'])
